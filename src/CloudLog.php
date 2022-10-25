@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class CloudLog
 {
-    const URL = 'http://api.cloudlog.loc/v1/';
+    const URL = 'https://api.cloudlog.me/v1/';
 
     protected $client;
     protected $channel;
