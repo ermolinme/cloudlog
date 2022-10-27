@@ -42,10 +42,7 @@ class CloudLogHandler extends AbstractProcessingHandler
      */
     protected function getDefaultFormatter(): FormatterInterface
     {
-        $lineFormatter = new LineFormatter("%message% %context% %extra%\n", null, false, true);
-        $lineFormatter->includeStacktraces()->allowInlineLineBreaks();
-
-        return $lineFormatter;
+        return new LineFormatter("%message% %context% %extra%\n", null, false, true);
     }
 
     /**
