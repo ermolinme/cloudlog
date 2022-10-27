@@ -34,7 +34,7 @@ class CloudLogHandler extends AbstractProcessingHandler
         $this
             ->cloudLog
             ->channel($this->channelId)
-            ->log($record['level_name'], $record['formatted']);
+            ->log(strtolower($record['level_name']), $record['formatted']);
     }
 
     /**
