@@ -12,7 +12,7 @@ class CloudLogHandler extends AbstractProcessingHandler
     private $config;
     private $apiToken;
     private $channelId;
-    private $loggerPW;
+    private $cloudLog;
 
     public function __construct(array $config)
     {   
@@ -23,7 +23,7 @@ class CloudLogHandler extends AbstractProcessingHandler
         $this->config = $config;
         $this->apiToken = $this->getConfigValue('api_token');
         $this->channelId   = $this->getConfigValue('channel_id');
-        $this->loggerPW = new CloudLog($this->apiToken);
+        $this->cloudLog = new CloudLog($this->apiToken);
     }
 
     /**
@@ -32,7 +32,7 @@ class CloudLogHandler extends AbstractProcessingHandler
     public function write(array $record): void
     {
         $this
-            ->loggerPW
+            ->cloudLog
             ->channel($this->channelId)
             ->log($record['level_name'], $record['formatted']);
     }
