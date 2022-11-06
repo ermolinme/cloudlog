@@ -31,10 +31,17 @@ class CloudLogHandler extends AbstractProcessingHandler
      */
     public function write(array $record): void
     {
+        $e = $record['context']['exception'] ?? null;
+
+        if ($e instanceof \Exception) {
+            $message = "{$e->getMessage()} {$e->getTraceAsString()}";
+        } else {
+            $message = $record['formatted'];
+        }
         $this
             ->cloudLog
             ->channel($this->channelId)
-            ->log(strtolower($record['level_name']), $record['formatted']);
+            ->log(strtolower($record['level_name']), $message);
     }
 
     /**
