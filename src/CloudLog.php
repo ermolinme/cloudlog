@@ -12,6 +12,7 @@ class CloudLog
 
     protected $client;
     protected $channel;
+    protected $tags = [];
 
     public function __construct(string $token)
     {
@@ -34,6 +35,26 @@ class CloudLog
     }
 
     /**
+     * @param array $tags
+     * @return $this
+     */
+    public function tags(array $tags): CloudLog
+    {
+        $this->tags = $tags;
+        return $this;
+    }
+
+    /**
+     * @param string $tag
+     * @return $this
+     */
+    public function tag(string $tag): CloudLog
+    {
+        $this->tags[] = $tag;
+        return $this;
+    }
+
+    /**
      * @param string $level
      * @param string $message
      * @return bool
@@ -47,7 +68,8 @@ class CloudLog
         $data = [
             'channel' => $this->channel,
             'level' => $level,
-            'message' => $message
+            'message' => $message,
+            'tags' => array_unique($this->tags)
         ];
 
         try {
