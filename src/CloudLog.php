@@ -57,11 +57,12 @@ class CloudLog
     /**
      * @param string $level
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function log(string $level, string $message): bool
+    public function log(string $level, string $message, array $context = []): bool
     {
-        if (!$this->channel) {
+        if (! $this->channel) {
             return false;
         }
 
@@ -69,6 +70,7 @@ class CloudLog
             'channel' => $this->channel,
             'level' => $level,
             'message' => $message,
+            'context' => $context,
             'tags' => array_unique($this->tags)
         ];
 
@@ -86,73 +88,82 @@ class CloudLog
 
     /**
      * @param string $message
+     * @param array $context
+     *
      * @return bool
      */
-    public function debug(string $message): bool
+    public function debug(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::DEBUG, $message);
+        return $this->log(LogLevel::DEBUG, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function info(string $message): bool
+    public function info(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::INFO, $message);
+        return $this->log(LogLevel::INFO, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function notice(string $message): bool
+    public function notice(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::NOTICE, $message);
+        return $this->log(LogLevel::NOTICE, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function warning(string $message): bool
+    public function warning(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::WARNING, $message);
+        return $this->log(LogLevel::WARNING, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function error(string $message): bool
+    public function error(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::ERROR, $message);
+        return $this->log(LogLevel::ERROR, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function critical(string $message): bool
+    public function critical(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::CRITICAL, $message);
+        return $this->log(LogLevel::CRITICAL, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function alert(string $message): bool
+    public function alert(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::ALERT, $message);
+        return $this->log(LogLevel::ALERT, $message, $context);
     }
 
     /**
      * @param string $message
+     * @param array $context
      * @return bool
      */
-    public function emergency(string $message): bool
+    public function emergency(string $message, array $context = []): bool
     {
-        return $this->log(LogLevel::EMERGENCY, $message);
+        return $this->log(LogLevel::EMERGENCY, $message, $context);
     }
 }
