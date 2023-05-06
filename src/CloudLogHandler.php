@@ -36,7 +36,7 @@ class CloudLogHandler extends AbstractProcessingHandler
         if ($e instanceof \Exception) {
             $message = "{$e->getMessage()} {$e->getTraceAsString()}";
         } else {
-            $message = $record['formatted'];
+            $message = $record['message'];
         }
         $this
             ->cloudLog
