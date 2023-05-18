@@ -10,7 +10,7 @@ $channelId = YOUR_CHANNEL_ID_HERE;
 $cloudLog = new CloudLog($apiToken);
 $cloudLog->channel($channelId);
 $cloudLog->tag('my_cool_tag'); //optional
-$cloudLog->info('Hello world!');
+$cloudLog->info('Hello world!', ['foo' => 'bar']);
 $cloudLog->error('Whoops!');
 $cloudLog->critical('OMG!');
 ```       
